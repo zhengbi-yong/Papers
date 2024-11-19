@@ -1,0 +1,455 @@
+\begin{thebibliography}{56}
+\providecommand{\natexlab}[1]{#1}
+\providecommand{\url}[1]{\texttt{#1}}
+\expandafter\ifx\csname urlstyle\endcsname\relax
+  \providecommand{\doi}[1]{doi: #1}\else
+  \providecommand{\doi}{doi: \begingroup \urlstyle{rm}\Url}\fi
+
+\bibitem[Al-Rfou et~al.(2019)Al-Rfou, Choe, Constant, Guo, and
+  Jones]{al2019character}
+Al-Rfou, R., Choe, D., Constant, N., Guo, M., and Jones, L.
+\newblock Character-level language modeling with deeper self-attention.
+\newblock In \emph{Proceedings of the AAAI Conference on Artificial
+  Intelligence}, volume~33, pp.\  3159--3166, 2019.
+
+\bibitem[Bandeira et~al.(2020)Bandeira, Singer, and
+  Strohmer]{strohmer2020mathdl}
+Bandeira, A.~S., Singer, A., and Strohmer, T.
+\newblock \emph{Mathematics of Data Science}.
+\newblock 2020.
+\newblock URL
+  \url{https://people.math.ethz.ch/~abandeira/BandeiraSingerStrohmer-MDS-draft.pdf}.
+
+\bibitem[Bhojanapalli et~al.(2021)Bhojanapalli, Chakrabarti, Glasner, Li,
+  Unterthiner, and Veit]{bhojanapalli2021understanding}
+Bhojanapalli, S., Chakrabarti, A., Glasner, D., Li, D., Unterthiner, T., and
+  Veit, A.
+\newblock Understanding robustness of transformers for image classification.
+\newblock In \emph{Proceedings of the IEEE/CVF international conference on
+  computer vision}, pp.\  10231--10241, 2021.
+
+\bibitem[Chen et~al.(2021)Chen, Lu, Rajeswaran, Lee, Grover, Laskin, Abbeel,
+  Srinivas, and Mordatch]{chen2021decision}
+Chen, L., Lu, K., Rajeswaran, A., Lee, K., Grover, A., Laskin, M., Abbeel, P.,
+  Srinivas, A., and Mordatch, I.
+\newblock Decision transformer: Reinforcement learning via sequence modeling.
+\newblock \emph{Advances in neural information processing systems},
+  34:\penalty0 15084--15097, 2021.
+
+\bibitem[Child et~al.(2019)Child, Gray, Radford, and
+  Sutskever]{child2019generating}
+Child, R., Gray, S., Radford, A., and Sutskever, I.
+\newblock Generating long sequences with sparse transformers.
+\newblock \emph{arXiv preprint arXiv:1904.10509}, 2019.
+
+\bibitem[Cho et~al.(2014)Cho, van Merri{\"e}nboer, Gulcehre, Bahdanau,
+  Bougares, Schwenk, and Bengio]{cho-etal-2014-learning}
+Cho, K., van Merri{\"e}nboer, B., Gulcehre, C., Bahdanau, D., Bougares, F.,
+  Schwenk, H., and Bengio, Y.
+\newblock Learning phrase representations using {RNN} encoder{--}decoder for
+  statistical machine translation.
+\newblock In \emph{Proceedings of the 2014 Conference on Empirical Methods in
+  Natural Language Processing ({EMNLP})}, pp.\  1724--1734, Doha, Qatar,
+  October 2014. Association for Computational Linguistics.
+\newblock \doi{10.3115/v1/D14-1179}.
+\newblock URL \url{https://www.aclweb.org/anthology/D14-1179}.
+
+\bibitem[Deng et~al.(2009)Deng, Dong, Socher, Li, Li, and
+  Fei-Fei]{deng2009imagenet}
+Deng, J., Dong, W., Socher, R., Li, L.-J., Li, K., and Fei-Fei, L.
+\newblock Imagenet: A large-scale hierarchical image database.
+\newblock In \emph{2009 IEEE conference on computer vision and pattern
+  recognition}, pp.\  248--255. Ieee, 2009.
+
+\bibitem[Devlin et~al.(2018)Devlin, Chang, Lee, and Toutanova]{devlin2018bert}
+Devlin, J., Chang, M.-W., Lee, K., and Toutanova, K.
+\newblock Bert: Pre-training of deep bidirectional transformers for language
+  understanding.
+\newblock \emph{arXiv preprint arXiv:1810.04805}, 2018.
+
+\bibitem[Dong et~al.(2020)Dong, Fu, Yang, Pang, Su, Xiao, and
+  Zhu]{dong2020benchmarking}
+Dong, Y., Fu, Q.-A., Yang, X., Pang, T., Su, H., Xiao, Z., and Zhu, J.
+\newblock Benchmarking adversarial robustness on image classification.
+\newblock In \emph{proceedings of the IEEE/CVF conference on computer vision
+  and pattern recognition}, pp.\  321--331, 2020.
+
+\bibitem[Dong et~al.(2021)Dong, Cordonnier, and Loukas]{dong2021attention}
+Dong, Y., Cordonnier, J.-B., and Loukas, A.
+\newblock Attention is not all you need: Pure attention loses rank doubly
+  exponentially with depth.
+\newblock In \emph{International Conference on Machine Learning}, pp.\
+  2793--2803. PMLR, 2021.
+
+\bibitem[Dosovitskiy et~al.(2021{\natexlab{a}})Dosovitskiy, Beyer, Kolesnikov,
+  Weissenborn, Zhai, Unterthiner, Dehghani, Minderer, Heigold, Gelly,
+  Uszkoreit, and Houlsby]{DosovitskiyB0WZ21}
+Dosovitskiy, A., Beyer, L., Kolesnikov, A., Weissenborn, D., Zhai, X.,
+  Unterthiner, T., Dehghani, M., Minderer, M., Heigold, G., Gelly, S.,
+  Uszkoreit, J., and Houlsby, N.
+\newblock An image is worth 16x16 words: Transformers for image recognition at
+  scale.
+\newblock In \emph{9th International Conference on Learning Representations,
+  {ICLR} 2021, Virtual Event, Austria, May 3-7, 2021}. OpenReview.net,
+  2021{\natexlab{a}}.
+\newblock URL \url{https://openreview.net/forum?id=YicbFdNTTy}.
+
+\bibitem[Dosovitskiy et~al.(2021{\natexlab{b}})Dosovitskiy, Beyer, Kolesnikov,
+  Weissenborn, Zhai, Unterthiner, Dehghani, Minderer, Heigold, Gelly,
+  Uszkoreit, and Houlsby]{dosovitskiy2021an}
+Dosovitskiy, A., Beyer, L., Kolesnikov, A., Weissenborn, D., Zhai, X.,
+  Unterthiner, T., Dehghani, M., Minderer, M., Heigold, G., Gelly, S.,
+  Uszkoreit, J., and Houlsby, N.
+\newblock An image is worth 16x16 words: Transformers for image recognition at
+  scale.
+\newblock In \emph{International Conference on Learning Representations},
+  2021{\natexlab{b}}.
+\newblock URL \url{https://openreview.net/forum?id=YicbFdNTTy}.
+
+\bibitem[Gilboa \& Osher(2007)Gilboa and Osher]{Gilboa2007NonlocalLI}
+Gilboa, G. and Osher, S.
+\newblock Nonlocal linear image regularization and supervised segmentation.
+\newblock \emph{Multiscale Model. Simul.}, 6:\penalty0 595--630, 2007.
+
+\bibitem[Gilboa \& Osher(2008)Gilboa and Osher]{Gilboa2008NonlocalOW}
+Gilboa, G. and Osher, S.
+\newblock Nonlocal operators with applications to image processing.
+\newblock \emph{Multiscale Model. Simul.}, 7:\penalty0 1005--1028, 2008.
+
+\bibitem[Gulati et~al.(2020)Gulati, Qin, Chiu, Parmar, Zhang, Yu, Han, Wang,
+  Zhang, Wu, et~al.]{gulati2020conformer}
+Gulati, A., Qin, J., Chiu, C.-C., Parmar, N., Zhang, Y., Yu, J., Han, W., Wang,
+  S., Zhang, Z., Wu, Y., et~al.
+\newblock Conformer: Convolution-augmented transformer for speech recognition.
+\newblock \emph{arXiv preprint arXiv:2005.08100}, 2020.
+
+\bibitem[Guo et~al.(2021)Guo, Cai, Liu, Mu, Martin, and Hu]{guo2021pct}
+Guo, M.-H., Cai, J.-X., Liu, Z.-N., Mu, T.-J., Martin, R.~R., and Hu, S.-M.
+\newblock Pct: Point cloud transformer.
+\newblock \emph{Computational Visual Media}, 7\penalty0 (2):\penalty0 187--199,
+  2021.
+
+\bibitem[Hendrycks \& Dietterich(2019)Hendrycks and
+  Dietterich]{hendrycks2019benchmarking}
+Hendrycks, D. and Dietterich, T.
+\newblock Benchmarking neural network robustness to common corruptions and
+  perturbations.
+\newblock \emph{arXiv preprint arXiv:1903.12261}, 2019.
+
+\bibitem[Hendrycks et~al.(2021{\natexlab{a}})Hendrycks, Basart, Mu, Kadavath,
+  Wang, Dorundo, Desai, Zhu, Parajuli, Guo, et~al.]{hendrycks2021many}
+Hendrycks, D., Basart, S., Mu, N., Kadavath, S., Wang, F., Dorundo, E., Desai,
+  R., Zhu, T., Parajuli, S., Guo, M., et~al.
+\newblock The many faces of robustness: A critical analysis of
+  out-of-distribution generalization.
+\newblock In \emph{Proceedings of the IEEE/CVF International Conference on
+  Computer Vision}, pp.\  8340--8349, 2021{\natexlab{a}}.
+
+\bibitem[Hendrycks et~al.(2021{\natexlab{b}})Hendrycks, Zhao, Basart,
+  Steinhardt, and Song]{hendrycks2021natural}
+Hendrycks, D., Zhao, K., Basart, S., Steinhardt, J., and Song, D.
+\newblock Natural adversarial examples.
+\newblock In \emph{Proceedings of the IEEE/CVF Conference on Computer Vision
+  and Pattern Recognition}, pp.\  15262--15271, 2021{\natexlab{b}}.
+
+\bibitem[Janner et~al.(2021)Janner, Li, and Levine]{janner2021offline}
+Janner, M., Li, Q., and Levine, S.
+\newblock Offline reinforcement learning as one big sequence modeling problem.
+\newblock \emph{Advances in neural information processing systems},
+  34:\penalty0 1273--1286, 2021.
+
+\bibitem[Jin et~al.(2020)Jin, Jin, Zhou, and Szolovits]{jin2020bert}
+Jin, D., Jin, Z., Zhou, J.~T., and Szolovits, P.
+\newblock Is bert really robust? a strong baseline for natural language attack
+  on text classification and entailment.
+\newblock In \emph{Proceedings of the AAAI conference on artificial
+  intelligence}, volume~34, pp.\  8018--8025, 2020.
+
+\bibitem[Madry et~al.(2017)Madry, Makelov, Schmidt, Tsipras, and
+  Vladu]{madry2017towards}
+Madry, A., Makelov, A., Schmidt, L., Tsipras, D., and Vladu, A.
+\newblock Towards deep learning models resistant to adversarial attacks.
+\newblock \emph{arXiv preprint arXiv:1706.06083}, 2017.
+
+\bibitem[Mahmood et~al.(2021)Mahmood, Mahmood, and
+  Van~Dijk]{mahmood2021robustness}
+Mahmood, K., Mahmood, R., and Van~Dijk, M.
+\newblock On the robustness of vision transformers to adversarial examples.
+\newblock In \emph{Proceedings of the IEEE/CVF International Conference on
+  Computer Vision}, pp.\  7838--7847, 2021.
+
+\bibitem[Mao et~al.(2022)Mao, Qi, Chen, Li, Duan, Ye, He, and
+  Xue]{mao2022towards}
+Mao, X., Qi, G., Chen, Y., Li, X., Duan, R., Ye, S., He, Y., and Xue, H.
+\newblock Towards robust vision transformer.
+\newblock In \emph{Proceedings of the IEEE/CVF conference on Computer Vision
+  and Pattern Recognition}, pp.\  12042--12051, 2022.
+
+\bibitem[Merity et~al.(2017)Merity, Xiong, Bradbury, and
+  Socher]{DBLP:conf/iclr/MerityX0S17}
+Merity, S., Xiong, C., Bradbury, J., and Socher, R.
+\newblock Pointer sentinel mixture models.
+\newblock In \emph{5th International Conference on Learning Representations,
+  {ICLR} 2017, Toulon, France, April 24-26, 2017, Conference Track
+  Proceedings}. OpenReview.net, 2017.
+\newblock URL \url{https://openreview.net/forum?id=Byj72udxe}.
+
+\bibitem[Metropolis \& Ulam(1949)Metropolis and
+  Ulam]{13ab5b5e-0237-33fb-a7a8-6f6e4e0d4e0f}
+Metropolis, N. and Ulam, S.
+\newblock The monte carlo method.
+\newblock \emph{Journal of the American Statistical Association}, 44\penalty0
+  (247):\penalty0 335--341, 1949.
+\newblock ISSN 01621459.
+\newblock URL \url{http://www.jstor.org/stable/2280232}.
+
+\bibitem[Morača(2007)]{MORACA2007666}
+Morača, N.
+\newblock Upper bounds for the infinity norm of the inverse of sdd and s-sdd
+  matrices.
+\newblock \emph{Journal of Computational and Applied Mathematics}, 206\penalty0
+  (2):\penalty0 666--678, 2007.
+\newblock ISSN 0377-0427.
+\newblock \doi{https://doi.org/10.1016/j.cam.2006.08.013}.
+\newblock URL
+  \url{https://www.sciencedirect.com/science/article/pii/S0377042706005139}.
+
+\bibitem[Parikh et~al.(2016)Parikh, T{\"a}ckstr{\"o}m, Das, and
+  Uszkoreit]{parikh-etal-2016-decomposable}
+Parikh, A., T{\"a}ckstr{\"o}m, O., Das, D., and Uszkoreit, J.
+\newblock A decomposable attention model for natural language inference.
+\newblock In \emph{Proceedings of the 2016 Conference on Empirical Methods in
+  Natural Language Processing}, pp.\  2249--2255, Austin, Texas, November 2016.
+  Association for Computational Linguistics.
+\newblock \doi{10.18653/v1/D16-1244}.
+\newblock URL \url{https://www.aclweb.org/anthology/D16-1244}.
+
+\bibitem[Paul \& Chen(2022)Paul and Chen]{paul2022vision}
+Paul, S. and Chen, P.-Y.
+\newblock Vision transformers are robust learners.
+\newblock In \emph{Proceedings of the AAAI conference on Artificial
+  Intelligence}, volume~36, pp.\  2071--2081, 2022.
+
+\bibitem[Peyrard et~al.(2022)Peyrard, Ghotra, Josifoski, Agarwal, Patra,
+  Carignan, Kiciman, Tiwary, and West]{peyrard-etal-2022-invariant}
+Peyrard, M., Ghotra, S., Josifoski, M., Agarwal, V., Patra, B., Carignan, D.,
+  Kiciman, E., Tiwary, S., and West, R.
+\newblock Invariant language modeling.
+\newblock In Goldberg, Y., Kozareva, Z., and Zhang, Y. (eds.),
+  \emph{Proceedings of the 2022 Conference on Empirical Methods in Natural
+  Language Processing}, pp.\  5728--5743, Abu Dhabi, United Arab Emirates,
+  December 2022. Association for Computational Linguistics.
+\newblock \doi{10.18653/v1/2022.emnlp-main.387}.
+\newblock URL \url{https://aclanthology.org/2022.emnlp-main.387}.
+
+\bibitem[Raffel et~al.(2020)Raffel, Shazeer, Roberts, Lee, Narang, Matena,
+  Zhou, Li, and Liu]{JMLR:v21:20-074}
+Raffel, C., Shazeer, N., Roberts, A., Lee, K., Narang, S., Matena, M., Zhou,
+  Y., Li, W., and Liu, P.~J.
+\newblock Exploring the limits of transfer learning with a unified text-to-text
+  transformer.
+\newblock \emph{Journal of Machine Learning Research}, 21\penalty0
+  (140):\penalty0 1--67, 2020.
+\newblock URL \url{http://jmlr.org/papers/v21/20-074.html}.
+
+\bibitem[Russakovsky et~al.(2015)Russakovsky, Deng, Su, Krause, Satheesh, Ma,
+  Huang, Karpathy, Khosla, Bernstein, et~al.]{russakovsky2015imagenet}
+Russakovsky, O., Deng, J., Su, H., Krause, J., Satheesh, S., Ma, S., Huang, Z.,
+  Karpathy, A., Khosla, A., Bernstein, M., et~al.
+\newblock Imagenet large scale visual recognition challenge.
+\newblock \emph{International Journal of Computer Vision}, 115\penalty0
+  (3):\penalty0 211--252, 2015.
+
+\bibitem[Schlag et~al.(2021)Schlag, Irie, and Schmidhuber]{schlag2021linear}
+Schlag, I., Irie, K., and Schmidhuber, J.
+\newblock Linear transformers are secretly fast weight programmers.
+\newblock In \emph{International Conference on Machine Learning}, pp.\
+  9355--9366. PMLR, 2021.
+
+\bibitem[Shi et~al.(2022)Shi, GAO, Xu, Liang, Li, Kong, Lee, and
+  Kwok]{shi2022revisiting}
+Shi, H., GAO, J., Xu, H., Liang, X., Li, Z., Kong, L., Lee, S. M.~S., and Kwok,
+  J.
+\newblock Revisiting over-smoothing in {BERT} from the perspective of graph.
+\newblock In \emph{International Conference on Learning Representations}, 2022.
+\newblock URL \url{https://openreview.net/forum?id=dUV91uaXm3}.
+
+\bibitem[Silvester(2000)]{0826aabe-2dc2-393a-bbf2-a98a36b6bed5}
+Silvester, J.~R.
+\newblock Determinants of block matrices.
+\newblock \emph{The Mathematical Gazette}, 84\penalty0 (501):\penalty0
+  460--467, 2000.
+\newblock ISSN 00255572.
+\newblock URL \url{http://www.jstor.org/stable/3620776}.
+
+\bibitem[Strang(2006)]{strang2006linear}
+Strang, G.
+\newblock \emph{Linear algebra and its applications}.
+\newblock Thomson, Brooks/Cole, Belmont, CA, 2006.
+\newblock ISBN 0030105676 9780030105678 0534422004 9780534422004.
+\newblock URL
+  \url{http://www.amazon.com/Linear-Algebra-Its-Applications-Edition/dp/0030105676}.
+
+\bibitem[Strudel et~al.(2021)Strudel, Garcia, Laptev, and
+  Schmid]{strudel2021segmenter}
+Strudel, R., Garcia, R., Laptev, I., and Schmid, C.
+\newblock Segmenter: Transformer for semantic segmentation.
+\newblock In \emph{Proceedings of the IEEE/CVF international conference on
+  computer vision}, pp.\  7262--7272, 2021.
+
+\bibitem[Touvron et~al.(2021)Touvron, Cord, Douze, Massa, Sablayrolles, and
+  Jegou]{touvron2020deit}
+Touvron, H., Cord, M., Douze, M., Massa, F., Sablayrolles, A., and Jegou, H.
+\newblock Training data-efficient image transformers distillation through
+  attention.
+\newblock In Meila, M. and Zhang, T. (eds.), \emph{Proceedings of the 38th
+  International Conference on Machine Learning}, volume 139 of
+  \emph{Proceedings of Machine Learning Research}, pp.\  10347--10357. PMLR,
+  18--24 Jul 2021.
+\newblock URL \url{https://proceedings.mlr.press/v139/touvron21a.html}.
+
+\bibitem[Tramer \& Boneh(2019{\natexlab{a}})Tramer and
+  Boneh]{NEURIPS2019_5d4ae76f}
+Tramer, F. and Boneh, D.
+\newblock Adversarial training and robustness for multiple perturbations.
+\newblock In Wallach, H., Larochelle, H., Beygelzimer, A., d\textquotesingle
+  Alch\'{e}-Buc, F., Fox, E., and Garnett, R. (eds.), \emph{Advances in Neural
+  Information Processing Systems}, volume~32. Curran Associates, Inc.,
+  2019{\natexlab{a}}.
+\newblock URL
+  \url{https://proceedings.neurips.cc/paper_files/paper/2019/file/5d4ae76f053f8f2516ad12961ef7fe97-Paper.pdf}.
+
+\bibitem[Tramer \& Boneh(2019{\natexlab{b}})Tramer and
+  Boneh]{tramer2019adversarial}
+Tramer, F. and Boneh, D.
+\newblock Adversarial training and robustness for multiple perturbations.
+\newblock \emph{Advances in neural information processing systems}, 32,
+  2019{\natexlab{b}}.
+
+\bibitem[Uesato et~al.(2018)Uesato, O'Donoghue, Kohli, and van~den
+  Oord]{pmlr-v80-uesato18a}
+Uesato, J., O'Donoghue, B., Kohli, P., and van~den Oord, A.
+\newblock Adversarial risk and the dangers of evaluating against weak attacks.
+\newblock In Dy, J. and Krause, A. (eds.), \emph{Proceedings of the 35th
+  International Conference on Machine Learning}, volume~80 of \emph{Proceedings
+  of Machine Learning Research}, pp.\  5025--5034. PMLR, 10--15 Jul 2018.
+\newblock URL \url{https://proceedings.mlr.press/v80/uesato18a.html}.
+
+\bibitem[Vaswani et~al.(2017)Vaswani, Shazeer, Parmar, Uszkoreit, Jones, Gomez,
+  Kaiser, and Polosukhin]{vaswani2017attention}
+Vaswani, A., Shazeer, N., Parmar, N., Uszkoreit, J., Jones, L., Gomez, A.~N.,
+  Kaiser, {\L}., and Polosukhin, I.
+\newblock Attention is all you need.
+\newblock In \emph{Advances in neural information processing systems}, pp.\
+  5998--6008, 2017.
+
+\bibitem[Wang et~al.(2021)Wang, Wang, Cheng, Gan, Jia, Li, and
+  Liu]{005357537ef34c158137a70c5df3799b}
+Wang, B., Wang, S., Cheng, Y., Gan, Z., Jia, R., Li, B., and Liu, J.
+\newblock Infobert: Improving robustness of language models from an information
+  theoretic perspective.
+\newblock 2021.
+\newblock Publisher Copyright: {\textcopyright} 2021 ICLR 2021 - 9th
+  International Conference on Learning Representations. All rights reserved.;
+  9th International Conference on Learning Representations, ICLR 2021 ;
+  Conference date: 03-05-2021 Through 07-05-2021.
+
+\bibitem[Wang et~al.(2022)Wang, Zheng, Chen, and
+  Wang]{wang2022antioversmoothing}
+Wang, P., Zheng, W., Chen, T., and Wang, Z.
+\newblock Anti-oversmoothing in deep vision transformers via the fourier domain
+  analysis: From theory to practice.
+\newblock In \emph{International Conference on Learning Representations}, 2022.
+\newblock URL \url{https://openreview.net/forum?id=O476oWmiNNp}.
+
+\bibitem[Wang \& Bansal(2018)Wang and Bansal]{wang-bansal-2018-robust}
+Wang, Y. and Bansal, M.
+\newblock Robust machine comprehension models via adversarial training.
+\newblock In Walker, M., Ji, H., and Stent, A. (eds.), \emph{Proceedings of the
+  2018 Conference of the North {A}merican Chapter of the Association for
+  Computational Linguistics: Human Language Technologies, Volume 2 (Short
+  Papers)}, pp.\  575--581, New Orleans, Louisiana, June 2018. Association for
+  Computational Linguistics.
+\newblock \doi{10.18653/v1/N18-2091}.
+\newblock URL \url{https://aclanthology.org/N18-2091}.
+
+\bibitem[Xiong et~al.(2021)Xiong, Zeng, Chakraborty, Tan, Fung, Li, and
+  Singh]{xiong2021nystromformer}
+Xiong, Y., Zeng, Z., Chakraborty, R., Tan, M., Fung, G., Li, Y., and Singh, V.
+\newblock {Nystr{\"o}mformer: A Nystr{\"o}m-based Algorithm for Approximating
+  Self-Attention}.
+\newblock 2021.
+
+\bibitem[Yin et~al.(2008)Yin, Osher, Goldfarb, and Darbon]{stanbregman}
+Yin, W., Osher, S., Goldfarb, D., and Darbon, J.
+\newblock Bregman iterative algorithms for l(1)-minimization with applications
+  to compressed sensing.
+\newblock \emph{Siam Journal on Imaging Sciences - SIAM J IMAGING SCI}, 1, 01
+  2008.
+\newblock \doi{10.1137/070703983}.
+
+\bibitem[Yuan et~al.(2023)Yuan, Zhou, Zou, and Cheng]{yuan2023you}
+Yuan, Z., Zhou, P., Zou, K., and Cheng, Y.
+\newblock You are catching my attention: Are vision transformers bad learners
+  under backdoor attacks?
+\newblock In \emph{Proceedings of the IEEE/CVF Conference on Computer Vision
+  and Pattern Recognition}, pp.\  24605--24615, 2023.
+
+\bibitem[Zang et~al.(2019)Zang, Qi, Yang, Liu, Zhang, Liu, and
+  Sun]{zang2019word}
+Zang, Y., Qi, F., Yang, C., Liu, Z., Zhang, M., Liu, Q., and Sun, M.
+\newblock Word-level textual adversarial attacking as combinatorial
+  optimization.
+\newblock \emph{arXiv preprint arXiv:1910.12196}, 2019.
+
+\bibitem[Zhang et~al.(2019)Zhang, Yao, Sun, and Tay]{zhang2019deep}
+Zhang, S., Yao, L., Sun, A., and Tay, Y.
+\newblock Deep learning based recommender system: A survey and new
+  perspectives.
+\newblock \emph{ACM Computing Surveys (CSUR)}, 52\penalty0 (1):\penalty0 1--38,
+  2019.
+
+\bibitem[Zhang et~al.(2010)Zhang, Burger, Bresson, and
+  Osher]{zhangnonlocalbregman}
+Zhang, X., Burger, M., Bresson, X., and Osher, S.
+\newblock Bregmanized nonlocal regularization for deconvolution and sparse
+  reconstruction.
+\newblock \emph{SIAM Journal on Imaging Sciences}, 3\penalty0 (3):\penalty0
+  253--276, 2010.
+\newblock \doi{10.1137/090746379}.
+\newblock URL \url{https://doi.org/10.1137/090746379}.
+
+\bibitem[Zhao et~al.(2021)Zhao, Jiang, Jia, Torr, and Koltun]{zhao2021point}
+Zhao, H., Jiang, L., Jia, J., Torr, P.~H., and Koltun, V.
+\newblock Point transformer.
+\newblock In \emph{Proceedings of the IEEE/CVF International Conference on
+  Computer Vision}, pp.\  16259--16268, 2021.
+
+\bibitem[Zhou et~al.(2017)Zhou, Zhao, Puig, Fidler, Barriuso, and
+  Torralba]{zhou2017scene}
+Zhou, B., Zhao, H., Puig, X., Fidler, S., Barriuso, A., and Torralba, A.
+\newblock Scene parsing through ade20k dataset.
+\newblock In \emph{Proceedings of the IEEE conference on computer vision and
+  pattern recognition}, pp.\  633--641, 2017.
+
+\bibitem[Zhou et~al.(2018)Zhou, Zhao, Puig, Xiao, Fidler, Barriuso, and
+  Torralba]{zhou2018semantic}
+Zhou, B., Zhao, H., Puig, X., Xiao, T., Fidler, S., Barriuso, A., and Torralba,
+  A.
+\newblock Semantic understanding of scenes through the ade20k dataset, 2018.
+
+\bibitem[Zhou et~al.(2021)Zhou, Kang, Jin, Yang, Lian, Jiang, Hou, and
+  Feng]{zhou2021deepvit}
+Zhou, D., Kang, B., Jin, X., Yang, L., Lian, X., Jiang, Z., Hou, Q., and Feng,
+  J.
+\newblock Deepvit: Towards deeper vision transformer, 2021.
+
+\bibitem[Zhou et~al.(2022)Zhou, Yu, Xie, Xiao, Anandkumar, Feng, and
+  Alvarez]{zhou2022understanding}
+Zhou, D., Yu, Z., Xie, E., Xiao, C., Anandkumar, A., Feng, J., and Alvarez,
+  J.~M.
+\newblock Understanding the robustness in vision transformers.
+\newblock In \emph{International Conference on Machine Learning}, pp.\
+  27378--27394. PMLR, 2022.
+
+\end{thebibliography}

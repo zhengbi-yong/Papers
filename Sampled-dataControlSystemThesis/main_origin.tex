@@ -1,0 +1,390 @@
+%!TEX program = xelatex
+% 完整编译: xelatex -> biber/bibtex -> xelatex -> xelatex
+\documentclass[lang=cn,a4paper,newtx]{elegantpaper}
+
+\title{课程设计}
+\author{雍征彼 \\ 北京理工大学}
+\institute{}
+
+% \version{0.11}
+\date{\zhdate{2024/11/18}}
+\usepackage{fontspec}
+\setmainfont{Times New Roman} % 或其他已安装字体
+
+% 本文档命令
+\usepackage{array}
+\usepackage{amsmath}
+% Recommended, but optional, packages for figures and better typesetting:
+\usepackage{microtype}
+\usepackage{graphicx}
+\usepackage{subfigure}
+\usepackage{booktabs} % for professional tables
+
+% hyperref makes hyperlinks in the resulting PDF.
+% If your build breaks (sometimes temporarily if a hyperlink spans a page)
+% please comment out the following usepackage line and replace
+% \usepackage{icml2024} with \usepackage[nohyperref]{icml2024} above.
+\usepackage{hyperref}
+
+
+% Attempt to make hyperref and algorithmic work together better:
+\newcommand{\theHalgorithm}{\arabic{algorithm}}
+
+% Use the following line for the initial blind version submitted for review:
+% \usepackage{icml2024}
+
+
+
+% For theorems and such
+% \theoremstyle{definition}
+% \newtheorem{definition}{Definition}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{mathtools}
+\usepackage{amsthm}
+\newcommand{\ccr}[1]{\makecell{{\color{#1}\rule{1cm}{1cm}}}}
+\addbibresource[location=local]{reference.bib} % 参考文献，不要删除
+
+\begin{document}
+
+\maketitle
+
+随着人工智能经验学派的发展，Tricks和排列组合的方法逐渐耗尽，而控制理论在现代人工智能技术中的作用则日益体现，作为一个已经发展了较久的学科，其有很多方法论可以为人工智能所用，虽然不一定能够完全照搬，但是至少提供了珍贵的参考。本课程设计旨在通过复杂采样控制系统的学习，探讨控制理论在人工智能系统设计中的应用与发展。本文以一个案例分析，展示了控制理论在Transformer中的应用。
+
+\section{PID与Transformer的结合}
+来自Rice大学的Tam Nguyen提出了一种新的Transformer结构，称为PIDformer。PIDformer是在Transformer的基础上，引入了PID控制器，用于对Transformer的输出进行调节。
+Transformer架构在表达方面主要存在两个缺陷：输入易受干扰和输出表示秩坍塌。Tam Nguyen揭示了自注意力机制本质上是一种自治的状态空间模型，它自然地在求解中倾向于输出平滑，从而导致输出的秩降低和表示能力的削弱。此外，Transformer自注意力机制的稳态解对输入扰动非常敏感。为了解决这些问题，他在模型中引入了一个带有参考点的比例-积分-微分（PID）闭环反馈控制系统，以提升鲁棒性和表示能力。这种集成方法在增强模型稳定性的同时，保留高频细节信息，使其对噪声更加抗扰。理论证明，这种受控状态空间模型具有较强的鲁棒性，并能够有效解决秩坍塌问题。在这一控制框架的启发下，Tam提出了一种新型Transformer架构——由PID控制的Transformer（PIDformer），旨在提升鲁棒性并缓解Softmax Transformer中固有的秩坍塌问题。
+
+
+
+\section{背景知识}
+\section{自注意力机制}
+\section*{1.1 背景：自注意力机制}
+
+给定一个令牌序列：
+\[
+\mathbf{X}^{\ell} := 
+\begin{bmatrix}
+\mathbf{x}^{\ell}(1), \cdots, \mathbf{x}^{\ell}(N)
+\end{bmatrix}^\top, \quad 
+\mathbf{X}^{\ell} \in \mathbb{R}^{N \times D_x},
+\]
+在第 $\ell$ 层，查询矩阵、键矩阵和值矩阵分别定义为：
+\[
+\mathbf{Q}^{\ell} = \mathbf{X}^\ell \mathbf{W}_Q^{\ell^\top}, \quad
+\mathbf{K}^{\ell} = \mathbf{X}^\ell \mathbf{W}_K^{\ell^\top}, \quad
+\mathbf{V}^{\ell} = \mathbf{X}^\ell \mathbf{W}_V^{\ell^\top},
+\]
+其中，权重矩阵满足 $\mathbf{W}_Q^{\ell}, \mathbf{W}_K^{\ell} \in \mathbb{R}^{D_{qk} \times D_x}$，$\mathbf{W}_V^{\ell} \in \mathbb{R}^{D \times D_x}$。
+
+自注意力机制计算第 $\ell$ 层中第 $i$ 个令牌的输出如下：
+\[
+u^{\ell}(i) = \sum_{j=1}^N \text{softmax}\left( 
+\frac{\mathbf{q}^{\ell}(i)^\top \mathbf{k}^{\ell}(j)}{\sqrt{D_{qk}}}
+\right) \mathbf{v}^{\ell}(j),
+\]
+其中 $\mathbf{q}^{\ell}(i)$ 是查询矩阵 $\mathbf{Q}^{\ell}$ 的第 $i$ 行，而 $\mathbf{k}^{\ell}(j)$ 和 $\mathbf{v}^{\ell}(j)$ 分别是键矩阵 $\mathbf{K}^{\ell}$ 和值矩阵 $\mathbf{V}^{\ell}$ 的第 $j$ 行。Softmax 函数用于计算令牌 $i$ 和 $j$ 之间的注意力分数。
+
+这种自注意力机制被称为 \textbf{Softmax 注意力}。使用 Softmax 注意力的 Transformer 被称为 \textbf{Softmax Transformer}。
+
+尽管 Transformer 取得了显著的成功，但在鲁棒性和表示能力方面仍存在实际性能问题。例如，近期研究表明，视觉 Transformer 易受到对抗性攻击和常见输入扰动（如噪声或模糊）的影响。此外，深度 Transformer 模型的输出还存在秩坍塌现象，即随着模型深度的增加，令牌嵌入变得越来越相似。这种问题严重限制了 Transformer 的表示能力，从而影响其在各种任务中的性能。
+
+解决这些问题对于确保 Transformer 模型在不同应用中的可靠性和有效性至关重要。
+
+\section*{2. 自注意力的控制框架}
+
+考虑第 $\ell$ 层的值矩阵：
+\[
+\mathbf{V}^{\ell} := 
+\begin{bmatrix}
+\mathbf{v}^{\ell}(1), \cdots, \mathbf{v}^{\ell}(N)
+\end{bmatrix}^\top, \quad 
+\mathbf{V}^{\ell} \in \mathbb{R}^{N \times D},
+\]
+如第 1.1 节所述。令 $\Omega \subset \mathbb{R}$，$\mathbf{v}(x, t) := [v_1(x, t), \cdots, v_D(x, t)]^\top$ 为一个实值向量函数，$\mathbf{v} : \Omega \times [0, \infty) \to \mathbb{R}^D$，且 $\mathbf{v} \in L^2(\Omega \times [0, \infty))$。假设值矩阵 $\mathbf{V}^\ell$ 离散化了空间和时间维度上的函数 $\mathbf{v}(x, t)$。在控制系统的上下文中，$\mathbf{v}(x)$ 可以被视为以下状态空间模型的状态信号：
+\[
+\frac{\partial \mathbf{v}(x, t)}{\partial t} = 
+\int_\Omega (\mathbf{v}(y, t) - \mathbf{v}(x, t)) K(x, y, t) dy + \mathbf{z}(x, t),
+\]
+\[
+\mathbf{v}(x, 0) = \mathbf{v}^0(x), \quad 
+\mathbf{z}(x, t) = 0, \quad \forall x \in \Omega, \, \forall t \geq 0,
+\]
+其中 $\mathbf{z} \in L^2(\Omega \times [0, \infty))$ 是控制输入，$\mathbf{v}^0$ 是初始状态。函数 $K(x, y, t)$ 是核函数，用于捕获信号 $\mathbf{v}$ 在位置 $x, y$ 处以及时间 $t$ 时的接近程度。
+
+这里，状态空间模型 (SSM) 是自治的，因为系统中没有引入任何控制输入或反馈。在本节中，我们展示了方程 (2) 描述的系统通过最小化信号的非局部全变差 (nonlocal total variation, Gilboa \& Osher, 2008) 来对信号进行平滑处理，从而在演化过程中丢失了详细信息。随后，我们表明，自注意力机制可以看作是这种动力学的离散化形式。最后，我们从理论上证明，方程 (2) 中的状态空间模型 (SSM) 容易受到输入扰动和表示能力坍塌的影响。
+
+\section*{2.1 状态空间模型与非局部变分最小化的联系}
+
+我们表明，以最小化以下非局部泛函为目标的\textbf{梯度流（gradient flow）}是方程 (2) 中描述的状态空间模型（SSM）的一种特殊情况：
+\[
+J(\mathbf{v}) = \frac{1}{2} \int_{\Omega \times \Omega} 
+\|\mathbf{v}(x) - \mathbf{v}(y)\|_2^2 k(x, y) dx dy. \tag{3}
+\]
+
+这里，$J(\mathbf{v})$ 是空间维度上的非局部导数平方和：
+\[
+\partial_y \mathbf{v}(x) = \frac{\mathbf{v}(x) - \mathbf{v}(y)}{\sqrt{k(x, y)}}, 
+\]
+该非局部导数由 Gilboa 和 Osher (2008) 提出，用于表示信号 $\mathbf{v}$ 的非局部变化。而核函数 $k(x, y)$ 则捕捉了信号中位置 $x$ 和 $y$ 之间的接近程度。最小化 $J(\mathbf{v})$ 促进了 $\mathbf{v}$ 的平滑性，并抑制了信号中的高频成分。
+
+对于 $\mathbf{v}$，其关于 $J$ 的梯度表示如下：
+\[
+\nabla_{\mathbf{v}} J(\mathbf{v}) = 
+\begin{bmatrix}
+\frac{\partial J}{\partial v_1}, \frac{\partial J}{\partial v_2}, \cdots, \frac{\partial J}{\partial v_D}
+\end{bmatrix}^\top. \tag{4}
+\]
+
+如附录 B.10 所示，$J$ 关于 $\mathbf{v}_j$ 的\textbf{Fréchet 导数}为：
+\[
+\frac{\partial J}{\partial v_j} = 
+\int_{\Omega} 
+\left( v_j(x) - v_j(y) \right) \left( k(x, y) + k(y, x) \right) dy. \tag{5}
+\]
+
+将公式 (5) 中关于 $\partial J / \partial \mathbf{v}_j$ 的表达式代入公式 (4)，可得到以下梯度流（gradient flow）：
+\[
+\frac{\partial \mathbf{v}(x, t)}{\partial t} = -\nabla_{\mathbf{v}} J(\mathbf{v})
+= \int_\Omega (\mathbf{v}(y, t) - \mathbf{v}(x, t))(k(x, y) + k(y, x)) dy, \tag{6}
+\]
+其中，方程 (2) 中的自治状态空间表示在 $K(x, y, t) := k(x, y) + k(y, x)$ 为对称且时间不变时，简化为上述形式。在这种情况下，模型减少了信号的非局部总方差，得到一个更平滑的解。然而，这使得模型容易在输出表示中出现秩坍塌问题。在第 2.2 节中，我们证明了无论 $K(x, y, t)$ 是否对称，模型都容易出现秩坍塌问题。
+
+\subsection*{状态空间模型与自注意力机制的联系}
+我们表明，状态空间模型（SSM）的离散化可以恢复自注意力机制。令 $\mathbf{q}, \mathbf{k} : \Omega \times [0, \infty) \to \mathbb{R}^{D_{qk}}$，且 $\mathbf{q}, \mathbf{k} \in L^2(\Omega \times [0, \infty))$ 为实值向量函数。类似于 $\mathbf{v}(x, t)$，我们可以在空间维度上对 $\mathbf{q}(x, t)$ 和 $\mathbf{k}(x, t)$ 进行离散化，得到第 $\ell$ 层的查询向量 $\mathbf{q}^\ell(1), \dots, \mathbf{q}^\ell(N) \in \mathbb{R}^{D_{qk}}$ 和键向量 $\mathbf{k}^\ell(1), \dots, \mathbf{k}^\ell(N) \in \mathbb{R}^{D_{qk}}$。定义接近核函数如下：
+\[
+K(x, y, t) := \frac{\exp(\mathbf{q}(x, t)^\top \mathbf{k}(y, t)/\sqrt{D_{qk}})}
+{\int_\Omega \exp(\mathbf{q}(x, t)^\top \mathbf{k}(y', t)/\sqrt{D_{qk}}) dy'}.
+\]
+
+通过应用欧拉方法（Euler method）对方程 (2) 进行离散化，时间步长 $\Delta t(x) := 1$，系统的更新步骤变为：
+\[
+\mathbf{v}(x, t + 1) \approx 
+\int_\Omega \frac{\exp(\mathbf{q}(x, t)^\top \mathbf{k}(y, t)/\sqrt{D_{qk}})}
+{\int_\Omega \exp(\mathbf{q}(x, t)^\top \mathbf{k}(y', t)/\sqrt{D_{qk}}) dy'} 
+\mathbf{v}(y, t) dy. \tag{7}
+\]
+
+使用蒙特卡罗方法（Monte-Carlo method, Metropolis \& Ulam, 1949）对空间维度上的积分进行近似，可以得到：
+\[
+\mathbf{v}^{\ell+1}(i) \approx \sum_{j=1}^N 
+\text{softmax}\left( \frac{\mathbf{q}^\ell(i)^\top \mathbf{k}^\ell(j)}{\sqrt{D_{qk}}} \right) \mathbf{v}^\ell(j).
+\]
+
+这恢复了公式 (1) 中的 $\mathbf{u}^\ell(i)$，即第 $\ell$ 层中自注意力机制的输出令牌 $i$。由于自注意力机制是方程 (2) 中状态空间模型的离散化，它继承了该模型的特性，因此容易受到输入扰动和输出秩坍塌的影响。这些特性将在第 2.2 节中得到理论证明。
+
+\section*{2.2 状态空间模型的稳定性与表示坍塌}
+
+模型的鲁棒性指的是其在面临不确定或具有挑战性的场景（例如噪声数据、分布偏移或对抗性攻击）时，仍然能够维持高性能的能力。此外，鲁棒性还包括模型的稳定性，即当输入发生扰动时，模型的输出仍能保持相对不变。
+
+对于状态空间模型（SSM）的理论分析，我们假设核函数 $K$ 是时间不变的，即 $K(x, y, t) = K(x, y)$。这种假设在 Transformer 的上下文中是实际的，特别是在深度 Transformer 模型中，注意力矩阵在初始几层后往往趋于相似。基于公式 (2) 的空间维度离散化，模型的状态空间表达式为：
+\[
+\frac{d\mathbf{v}(i, t)}{dt} = \sum_{j=1}^N (\mathbf{v}(j, t) - \mathbf{v}(i, t))K(i, j),
+\]
+其中 $i, j = 1, 2, \dots, N$。通过选择 $K(i, j) := \text{softmax}(\mathbf{q}(i)^\top \mathbf{k}(j) / \sqrt{D_{qk}})$，对应的矩阵表示可写为：
+\[
+\frac{d\mathbf{V}(t)}{dt} = K\mathbf{V}(t) - \mathbf{V}(t), \quad \mathbf{V}(0) = \mathbf{V}^0, \tag{8}
+\]
+其中 $K$ 是一个具有正元素的右随机矩阵。在 Transformer 的背景下，$K$ 是注意力矩阵，$\mathbf{V} = [\mathbf{v}^0(1), \dots, \mathbf{v}^0(N)]^\top$ 是第一层的值矩阵。引理 1 说明了公式 (8) 中 SSM 的稳定性及表示坍塌的特性。
+
+\textbf{引理 1.} 给定 $\{\alpha_1, \alpha_2, \dots, \alpha_M\}$，其中 $M \leq N$，是 $K - I \in \mathbb{R}^{N \times N}$ 的复数谱。常微分方程 (8) 的解为：
+\[
+\mathbf{V}(t) = P\exp(Jt)P^{-1}\mathbf{V}^0, \tag{9}
+\]
+其中 $PJP^{-1}$ 是 $K - I$ 的 Jordan 分解，$P$ 是可逆矩阵，包含 $K - I$ 的广义特征向量，$J = \text{diag}(J_{\alpha_1, m_1}, J_{\alpha_2, m_2}, \dots, J_{\alpha_M, m_M})$ 是 $K - I$ 的 Jordan 形式，其中
+\[
+J_{\alpha_i, m_i} = 
+\begin{bmatrix}
+\alpha_i & 1 & \cdots & 0 \\
+0 & \alpha_i & \cdots & 0 \\
+\vdots & \vdots & \ddots & 1 \\
+0 & 0 & \cdots & \alpha_i
+\end{bmatrix} \in \mathbb{R}^{m_i \times m_i}, \quad i = 1, \dots, M,
+\]
+且 $\sum_{i=1}^M m_i = N$。
+
+引理 1 的证明见附录 B.2。由于 $K$ 是一个正右随机矩阵，其最大的特征值 $\alpha_1$ 为 1，且 $\lvert \alpha_i \rvert < 1$（见 Bandiera et al., 2020 的定理 4.1），这意味着对于 $i = 2, \dots, M$，$\alpha_i \in [-1, 1]$。因此，矩阵 $K - I$ 的特征值为 $\alpha_1 - 1, \dots, \alpha_M - 1$，其中唯一最大的特征值为 0，其余特征值的实部位于 $[-2, 0]$。这导致稳态解的秩坍塌问题，具体描述见以下引理 2。
+
+\textbf{引理 2.} 
+\[
+\lim_{t \to \infty} \mathbf{V}(t) = [c_{1,1}\mathbf{p}_1, \dots, c_{1, D_x}\mathbf{p}_1],
+\]
+其中 $\mathbf{p}_1$ 是 $K - I$ 的特征值 $(\alpha_1 - 1) = 0$ 对应的特征向量，$c_{1,1}, \dots, c_{1,D_x}$ 是常数。
+
+\section*{3. 基于PID控制器的状态空间表示Transformer}
+
+为了对抗因平滑性引起的信息丢失并增强模型稳定性，一个PID控制器被集成到状态空间表示中，形式如下：
+\[
+\frac{\partial \mathbf{v}(x, t)}{\partial t} =
+\int_\Omega (\mathbf{v}(y, t) - \mathbf{v}(x, t)) K(x, y, t) dy + \mathbf{z}(x, t),
+\]
+\[
+\mathbf{z}(x, t) = \lambda_P e(x, t) + \lambda_I \int_0^t e(x, \tau) d\tau + \lambda_D \frac{d e(x, t)}{d t},
+\]
+\[
+\mathbf{v}(x, 0) = \mathbf{v}^0(x), \quad \mathbf{z}(x, 0) = 0. \tag{10}
+\]
+
+其中，正则化项定义为 $e(x, t) = f(x) - \mathbf{v}(x, t)$，它封装了随 $\mathbf{v}(x, t)$ 随时间变得更加平滑而丢失的信息。参考函数 $f(x)$ 表示一个包含输入原始详细信息的高频信号。在Transformer的上下文中，我们设置 $f(x) = \beta \mathbf{v}^0(i)$，其中 $\beta \in [0, 1]$ 是一个参数，用于控制我们希望保留的输入信号中的详细信息比例。
+
+PID控制器的三个组成部分描述如下：
+1. **P控制器**：该部分直接与正则化项 $e(x, t)$ 成比例。在大量信息丢失的情况下，控制输入 $\mathbf{z}(x, t)$ 应与比例因子 $\lambda_P$ 成比例，以重新引入丢失的信息。
+2. **I控制器**：该部分累积所有过去的误差，由积分 $\lambda_I \int_0^t e(x, \tau) d\tau$ 给出。这一组件帮助重新引入被丢失的信息，同时稳定系统。
+3. **D控制器**：该部分通过 $ \lambda_D \frac{d e(x, t)}{d t}$ 预测未来的信号变化速率，并增强控制系统的响应性和稳定性。
+
+\subsection*{3.1 P和I控制器与不同优化方法的联系}
+
+我们展示了加入PID控制器后的反馈状态空间模型（10）隐式最小化了以下泛函：
+\[
+E(\mathbf{v}, f) = J(\mathbf{v}) + G(\mathbf{v}, f),
+\]
+\[
+J(\mathbf{v}) = \frac{1}{2} \int_{\Omega \times \Omega} \|\mathbf{v}(x) - \mathbf{v}(y)\|_2^2 k(x, y) dx dy,
+\]
+\[
+G(\mathbf{v}, f) = \frac{\lambda}{2} \int_\Omega \|\mathbf{v}(x) - f(x)\|_2^2 dx,
+\]
+其中数据保真项 $G(\mathbf{v}, f)$ 通过惩罚信号与参考信号 $f$ 的偏差来保留信号中的显著信息。这进一步验证了系统（10）能够从参考信号 $f$ 中保留相关信息。
+
+\textbf{P控制器下的状态空间模型作为梯度下降的优化方法}：泛函 $E(\mathbf{v}, f)$ 对 $\mathbf{v}$ 的梯度为：
+\[
+\nabla_{\mathbf{v}} E(\mathbf{v}, f) = \nabla_{\mathbf{v}} J(\mathbf{v}) + \lambda (\mathbf{v}(x) - f(x)),
+\]
+其梯度推导见附录 B.10。基于梯度下降方法，得到梯度流：
+\[
+\frac{\partial \mathbf{v}(x, t)}{\partial t} = -\nabla_{\mathbf{v}} E(\mathbf{v}, f),
+\]
+\[
+\frac{\partial \mathbf{v}(x, t)}{\partial t} =
+\int_\Omega (\mathbf{v}(y, t) - \mathbf{v}(x, t)) (k(x, y) + k(y, x)) dy
++ \lambda (\mathbf{v}(x, t) - f(x)). \tag{12}
+\]
+
+\subsection*{3.2 PID控制状态空间模型的稳定性与表示坍塌}
+
+在本节中，我们的目标是展示以下几点：
+(1) 集成比例控制器（P）部分能够增强模型的鲁棒性，使其能够对抗输入扰动，并缓解输出表示的秩坍塌问题；
+(2) 在PID控制中添加微分控制器（D）部分可以进一步稳定系统，缓解 $\mathbf{V}(t)$ 的快速和不稳定变化；
+(3) 最终，通过控制器的引入，PID控制状态空间模型（SSM）保证了系统的稳定性，使其对输入扰动具有鲁棒性。假设核函数 $K(x, y, t)$ 是时间不变的，我们在本节中对这一理论假设进行分析。
+
+\subsubsection*{3.2.1 P控制状态空间模型的分析}
+
+\textbf{P控制SSM的鲁棒性}：  
+从状态空间模型 (10) 出发，通过选择 $\lambda_D = 0$ 并应用欧拉离散化（Euler discretization），P控制模型可表示为：
+\[
+\frac{d\mathbf{v}(i, t)}{dt} = \sum_{j=1}^N (\mathbf{v}(j, t) - \mathbf{v}(i, t)) K(i, j) 
++ \lambda_P (f(i) - \mathbf{v}(i, t)),
+\]
+其中 $i, j = 1, 2, \dots, N$，核函数 $K(i, j)$ 定义为：
+\[
+K(i, j) := \text{softmax}\left(\frac{\mathbf{q}(i)^\top \mathbf{k}(j)}{\sqrt{D_{qk}}}\right),
+\]
+对应的矩阵表示为：
+\[
+\frac{d\mathbf{V}(t)}{dt} = K\mathbf{V}(t) - (\lambda_P + 1)\mathbf{V}(t) + \lambda_P \mathbf{F}, \quad \mathbf{V}(0) = \mathbf{V}^0. \tag{18}
+\]
+
+这里 $\mathbf{F} = [f(1), \dots, f(N)]^\top$。引理 4 帮助我们分析 SSM (18) 的解的稳定性和表示坍塌问题。在这里，$K$ 的特征值实部位于 $[0, 1]$ 内，且 $1 + \lambda_P > 0$，因此矩阵 $(K - (\lambda_P + 1)I) \neq 0$。这意味着：
+\[
+\text{det}(K - (\lambda_P + 1)I) \neq 0,
+\]
+因此，以下结论成立。
+
+\textbf{引理 4.}  
+设 $B := K - (\lambda_P + 1)I \in \mathbb{R}^{N \times N}$，方程 (18) 的解为：
+\[
+\mathbf{V}(t) = \exp(Bt)\left(\mathbf{V}^0 + B^{-1}\mathbf{F}\right) - \lambda_P B^{-1}\mathbf{F}. \tag{19}
+\]
+
+如果 $B$ 的所有特征值实部为负，则：
+\[
+\lim_{t \to \infty} \mathbf{V}(t) = -\lambda_P B^{-1}\mathbf{F}.
+\]
+
+\textbf{引理 4 的证明}见附录 B.5。如第 2.2 节所述，由于 $K$ 的特征值 $\text{Re}(\alpha_i) \in [0, 1], i = 1, \dots, M$，矩阵 $B$ 的特征值实部必须位于 $[-2, -\lambda_P]$ 范围内。由于引理 4 的结果，系统状态 $\mathbf{V}(t)$ 会收敛到 $-\lambda_P B^{-1}\mathbf{F}$。因此，与初始状态 $\mathbf{V}^0$ 无关，系统会最终收敛到参考点 $f$ 的缩放版本 $\beta \mathbf{v}^0$。幸运的是，这种缩放稳定了最终解。
+
+\subsubsection*{3.2.2 P控制SSM的分析}
+
+\textbf{命题 1.}  
+对于公式 (10) 中的比例系数 $\lambda_P > 0$ 和任意扰动 $\epsilon \in \mathbb{R}^{N \times D}$，$\|\epsilon\| \leq \epsilon_0$，通过将扰动加入到输入 $\mathbf{V}^0$ 中，系统的稳态解的变化是独立于 $\lambda_P$ 的，且其影响最多为：
+\[
+\beta \leq \frac{\delta}{\epsilon_0}. \tag{20}
+\]
+
+\textbf{证明}：命题 1 的证明见附录 B.6。此命题表明，我们可以选择超参数 $\beta$ 来控制输入扰动对输出的影响，使其尽可能小。
+
+\textbf{P控制SSM的表示坍塌问题}：  
+由于 $B^{-1}$ 是满秩矩阵（$B$ 是非奇异矩阵），因此 $\text{rank}(-\lambda_P B^{-1}\mathbf{F}) = \text{rank}(\mathbf{F})$（见 Strang, 2006）。在 Transformer 的上下文中，当选择 $\mathbf{F} = \beta\mathbf{V}^0$ 时，稳态解的秩等于输入 $\mathbf{V}^0$ 的秩。这表明，P控制的动态特性与公式 (18) 的动态特性一致。
+
+\subsubsection*{3.2.3 PID控制SSM的分析}
+
+通过选择 $\lambda_D \frac{d e(x, t)}{d t} = -\lambda_D \frac{d\mathbf{v}(x, t)}{d t}$ 并令 $\lambda_P = \lambda_I = \lambda_D$，采用欧拉离散化方法对空间维度进行离散化，PID控制模型的矩阵形式为：
+\[
+\mathbf{V}'(t) = K\mathbf{V}(t) - (\lambda_P + 1)\mathbf{V}(t) + \lambda_P \mathbf{F} - \lambda_D \mathbf{V}'(t),
+\]
+\[
+\mathbf{V}'(t) = \frac{1}{1 + \lambda_D} \left(K - (\lambda_P + 1)I\right)\mathbf{V}(t) + \frac{\lambda_P}{1 + \lambda_D}\mathbf{F}, \tag{21}
+\]
+其中 $\mathbf{V}(0) = \mathbf{V}^0$。方程 (21) 的解由以下引理提供。
+
+\textbf{引理 5.}  
+设 $B := K - (\lambda_P + 1)I \in \mathbb{R}^{N \times N}$，方程 (21) 的解为：
+\[
+\mathbf{V}(t) = \exp\left(\frac{1}{1 + \lambda_D}Bt\right)\left(\mathbf{V}^0 + B^{-1}\mathbf{F}\right) - \lambda_P B^{-1}\mathbf{F},
+\]
+\[
+\lim_{t \to \infty} \mathbf{V}(t) = -\lambda_P B^{-1}\mathbf{F}.
+\]
+
+引理 5 的证明见附录 B.7。引入微分控制器（D部分）到P控制系统中不会改变系统的稳态解。此外，微分控制器的引入通过衰减特征值 $1/(1 + \lambda_D)$ 起到了进一步稳定系统的作用，从而缓解了 $\mathbf{V}(t)$ 的快速变化。
+
+\textbf{命题 2.}  
+对于任意 $\lambda_P, \lambda_I, \lambda_D > 0$，系统 (23) 是稳定的。
+
+命题 2 的证明见附录 B.8。此命题表明，PID控制状态空间模型（SSM）在 (10) 中对于任意正值的 $\lambda_P, \lambda_I, \lambda_D$ 都是鲁棒且稳定的。
+
+\subsection*{3.3 基于PID控制的Transformer}
+
+通过欧拉离散化并令时间步长 $\Delta t = 1$，将 $t = 0$ 初始化为 $\mathbf{v}(0) = \mathbf{v}^0$，选择：
+\[
+K(x, y, t) := \frac{\exp(\mathbf{q}(x, t)^\top \mathbf{k}(y, t)/\sqrt{D_{qk}})}
+{\int_\Omega \exp(\mathbf{q}(x, t)^\top \mathbf{k}(y', t)/\sqrt{D_{qk}}) dy'},
+\]
+PID控制SSM (10) 的更新步骤为：
+\[
+\mathbf{v}^{t+1}(x) \approx 
+\int_\Omega \frac{\exp((\mathbf{q}^t(x)^\top \mathbf{k}^t(y))/\sqrt{D_{qk}})}
+{\int_\Omega \exp((\mathbf{q}^t(x)^\top \mathbf{k}^t(y'))/\sqrt{D_{qk}}) dy'} \mathbf{v}^t(y) dy
++ \mathbf{v}^0(x) + \lambda_P e^t(x) + \lambda_I \sum_{m=1}^t e^m(x) + \lambda_D \frac{d e^t(x)}{d t}.
+\]
+使用蒙特卡罗方法对积分进行近似后，可进一步优化上述更新公式。
+
+\section*{图1. 每层的PIDformer模型架构}
+
+\noindent
+通过在空间维度上对 $v^{\ell+1}(x), v^m(x), v^0(x)$ 离散化，并选择 $f(x) = v(x)$，我们得到以下新型PID注意力公式。它定义了第 $\ell$ 层的PID注意力输出。
+
+\textbf{定义1} （PID控制Transformer，简称PIDformer）。对于每层 $\ell, \ell = 1, \dots, L$，给定一组键和值向量 $\{k^{\ell}(j), v^{\ell}(j)\}_{j=1}^N$，对于同一层中的每个查询向量 $q^{\ell}(i), i = 1, \dots, N$，在PID控制Transformer（PIDformer）的第 $\ell$ 层，自注意力单元通过以下公式计算查询 $q^{\ell}(i)$ 的对应输出向量 $u^{\ell}(i)$：
+
+\[
+u^{\ell}(i) = \sum_{j=1}^N \text{softmax}\left(\frac{q^{\ell}(i)^\top k^{\ell}(j)}{\sqrt{D_{qk}}}\right) v^{\ell}(j)
++ \lambda_P e^{\ell}(i) + \lambda_I \sum_{m=1}^\ell e^m(i) + \lambda_D \left(e^{\ell}(i) - e^{\ell-1}(i)\right), \tag{25}
+\]
+
+其中：
+\[
+e^{\ell} = v^0 - v^{\ell}, \quad v^0(1), \dots, v^0(N) \in \mathbb{R}^D
+\]
+是PIDformer第一层中的值向量。
+
+由于PID注意力是受控状态空间模型（SSM）的离散化（参见公式(10)），它本质上是一种更加鲁棒的注意力机制。图1展示了PIDformer的架构。
+
+
+\nocite{*}
+\printbibliography[heading=bibintoc, title=\ebibname]
+
+\appendix
+%\appendixpage
+\addappheadtotoc
+
+\end{document}

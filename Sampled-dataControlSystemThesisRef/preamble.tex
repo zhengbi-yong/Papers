@@ -1,0 +1,149 @@
+% ---------------------------------
+%floats and figures
+% ---------------------------------
+
+% if you need to pass options to natbib, use, e.g.:
+\PassOptionsToPackage{numbers, compress}{natbib}
+\usepackage{amsmath}
+% Recommended, but optional, packages for figures and better typesetting:
+\usepackage{microtype}
+\usepackage{graphicx}
+\usepackage{subfigure}
+\usepackage{hyperref}
+\hypersetup{
+    colorlinks=true,
+    linkcolor=blue,
+    filecolor=magenta,      
+    urlcolor=cyan,
+    citecolor=black
+}
+\urlstyle{same}
+%\usepackage{array}
+\usepackage{booktabs} % for professional tables
+\usepackage{amsfonts}
+\usepackage{bm}
+%\usepackage{soul}
+%\usepackage{lmodern}
+%\usepackage{booktabs}
+\usepackage{threeparttable}
+%\usepackage{mathtools}
+\usepackage{tablefootnote}
+
+%\usepackage{cuted}
+\usepackage{lipsum}
+\usepackage{comment}
+
+\usepackage{multirow}
+%\usepackage[usenames, dvipsnames]{color}
+\usepackage{amsmath}
+
+\newcommand\xmod[1]{{\textcolor{blue}{#1}}}
+\newcommand\zmod[1]{{\textcolor{red}{#1}}}
+
+
+\usepackage{hyperref}
+
+\usepackage{enumitem}
+
+\usepackage{mathtools}
+% \DeclarePairedDelimiter\ceil{\lceil}{\rceil}
+% \DeclarePairedDelimiter\floor{\lfloor}{\rfloor}
+
+\usepackage{wrapfig}
+
+\usepackage{listings}
+
+\usepackage[english]{babel}
+%\usepackage[utf8x]{inputenc}
+
+\usepackage{listings}
+\usepackage{color}
+
+\definecolor{mygreen}{rgb}{0,0.6,0}
+\definecolor{mygray}{rgb}{0.5,0.5,0.5}
+\definecolor{mymauve}{rgb}{0.58,0,0.82}
+
+\lstset{ %
+  backgroundcolor=\color{white},   % choose the background color
+  basicstyle=\footnotesize,        % size of fonts used for the code
+  breaklines=true,                 % automatic line breaking only at whitespace
+  captionpos=b,                    % sets the caption-position to bottom
+  commentstyle=\color{mygreen},    % comment style
+  escapeinside={\%*}{*)},          % if you want to add LaTeX within your code
+  keywordstyle=\color{blue},       % keyword style
+  stringstyle=\color{mymauve},     % string literal style
+}
+
+%=======U S E R  D E F I N E D  M A C R O S=======
+% ---------------------------------
+% User Comments
+% ---------------------------------
+\usepackage{marginnote}
+% \newcommand{\bibhref}[2]{#2}
+\usepackage{soul} %text highlighting
+\newcommand{\todohl}[1]{{[\hl{#1?}]}}
+% \usepackage[disable]{todonotes}
+% \usepackage{todonotes}
+% \usepackage[colorinlistoftodos]{todonotes}
+%takes in optional argument
+% \newcommand{\tocite}[1]{%
+% \textcolor{red}{[cite:\ifthenelse{\equal{#1}{}}{}{#1}?]}
+% }
+
+
+\newcommand{\ignore}[1]{}
+\newcommand{\etal}{et al.~}
+
+%version in control in draft mode
+\newcommand{\versionString}{\textcolor{red}{draft-mode-[\today\ \currenttime]}}
+
+% ---------------------------------
+% Label utils
+% ---------------------------------
+
+% Usage:
+% \figlabel{myfigure} creates \label{fig:myfigure}
+% \figref{myfigure} references it
+\newcommand{\figlabel}[1]{\label{fig:#1}}
+% \newcommand{\figref}[1]{Fig.    \,\ref{fig:#1}}
+
+% Usage:
+% \seclabel{mysection} creates \label{sec:mysection}
+% \secref{mysection} references it
+\newcommand{\seclabel}[1]{\label{sec:#1}}
+% \newcommand{\secref}[1]{Section\,\ref{sec:#1}}
+
+\newcommand{\chlabel}[1]{\label{ch:#1}}
+\newcommand{\chref}[1]{Chapter\,\ref{ch:#1}}
+
+% Usage:
+% \tablabel{mytable} creates \label{tab:mytable}
+% \tabref{mytable} references it
+\newcommand{\tablabel}[1]{\label{tab:#1}}
+\newcommand{\tabref}[1]{Table~\ref{tab:#1}}
+
+\newcommand{\tss}{\hspace*{0.66mm}}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% space tweaks 
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\setlength{\abovecaptionskip}{0.5mm}
+\setlength{\belowcaptionskip}{0mm} 
+\setlength{\textfloatsep}{1.5mm}
+\setlength{\dbltextfloatsep}{1.5mm}
+%\renewcommand{\baselinestretch}{.9945}
+
+\makeatletter
+\newenvironment{mcases}[1][l]
+ {\let\@ifnextchar\new@ifnextchar
+  \left\lbrace
+  \def\arraystretch{1.2}%
+  \array{@{}l@{\quad}#1@{}}}
+ {\endarray\right.}
+\makeatother
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% symbol definitions for equations
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%

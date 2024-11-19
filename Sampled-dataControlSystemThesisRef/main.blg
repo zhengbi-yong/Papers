@@ -1,0 +1,55 @@
+This is BibTeX, Version 0.99d
+Capacity: max_strings=200000, hash_size=200000, hash_prime=170003
+The top-level auxiliary file: main.aux
+Reallocating 'name_of_file' (item size: 1) to 4 items.
+Reallocating 'name_of_file' (item size: 1) to 9 items.
+The style file: icml2024.bst
+Database file #1: ref.bib
+Warning--can't use both volume and number fields in al2019character
+Warning--empty publisher in strohmer2020mathdl
+Warning--can't use both volume and number fields in jin2020bert
+Warning--can't use both volume and number fields in paul2022vision
+Warning--empty booktitle in 005357537ef34c158137a70c5df3799b
+Warning--empty journal in xiong2021nystromformer
+You've used 56 entries,
+            2773 wiz_defined-function locations,
+            927 strings with 18841 characters,
+and the built_in function-call counts, 37826 in all, are:
+= -- 3290
+> -- 2890
+< -- 41
++ -- 966
+- -- 907
+* -- 3297
+:= -- 5698
+add.period$ -- 210
+call.type$ -- 56
+change.case$ -- 460
+chr.to.int$ -- 53
+cite$ -- 118
+duplicate$ -- 1510
+empty$ -- 2552
+format.name$ -- 979
+if$ -- 8012
+int.to.chr$ -- 4
+int.to.str$ -- 1
+missing$ -- 56
+newline$ -- 317
+num.names$ -- 234
+pop$ -- 959
+preamble$ -- 1
+purify$ -- 406
+quote$ -- 0
+skip$ -- 1350
+stack$ -- 0
+substring$ -- 1382
+swap$ -- 375
+text.length$ -- 30
+text.prefix$ -- 0
+top$ -- 0
+type$ -- 606
+warning$ -- 6
+while$ -- 264
+width$ -- 0
+write$ -- 796
+(There were 6 warnings)

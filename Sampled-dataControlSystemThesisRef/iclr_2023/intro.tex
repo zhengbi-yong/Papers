@@ -1,0 +1,47 @@
+Transformer models~\cite{vaswani2017attention} have shown remarkable achievements across various domains such as reinforcement learning~\cite{chen2021decision,janner2021offline}, computer vision~\cite{dosovitskiy2021an,touvron2020deit,zhao2021point,guo2021pct}, natural language processing~\cite{devlin2018bert,al2019character,child2019generating,JMLR:v21:20-074} and other practical applications~\cite{zhang2019deep,gulati2020conformer}. At the core of transformers lies the self-attention mechanism, which computes weighted averages of token representations within a sequence based on the similarity scores between pairs of tokens, thus capturing diverse syntactic and semantic relationships effectively~\cite{cho-etal-2014-learning,parikh-etal-2016-decomposable}. This flexibility in capturing relationships has been identified as a key factor contributing to the success of transformers.
+
+\vspace{-2mm}
+\subsection{Background: Self-Attention}
+\label{sec:background}
+Given a sequence of tokens $\bX^{\ell}:=[\bx^{\ell}(1),\cdots,\bx^{\ell}(N)]^\top$, $\bX^\ell \in \RR^{N\times D_x}$, the query, key and value matrices at layer $\ell$-th are $\bQ^{\ell}=\bX{\bW_Q^{\ell}}^\top$; $\bK^{\ell}=\bX{\bW_K^{\ell}}^\top$; and $\bV^{\ell}=\bX{\bW_V^{\ell}}^\top$, respectively. The weight matrix $\bW^{\ell}_Q, \bW^{\ell}_K \in \RR^{D_{qk}\times D_x}$ and $\bW^{\ell}_V\in \RR^{D\times D_x}$. The attention mechanism computes the output of token $i$ at layer $\ell$-th as follows
+\begin{equation}
+\label{eq:attention-vec}
+{{\bu}^{\ell}}(i)=\sum_{j=1}^N{\rm softmax}\Big({\bq^{\ell}}(i)^\top{\bk^{\ell}}(j)/\sqrt{D_{qk}}\Big){\bv^{\ell}}(j),
+\end{equation}
+where ${\bq^{\ell}}(i)$ is the row $i$-th of $\bQ^{\ell}$ and ${\bk^{\ell}}(j), {\bv^{\ell}}(j)$ are the row $j$-th of $\bK^{\ell}, \bV^{\ell}$, respectively.
+The softmax function computes the attention score between token $i$ and $j$, for all $i, j = 1, \dots, N$.
+% For a given input sequence $\bX:=[\bx(1),\cdots,\bx(N)]^\top\in \RR^{N\times D_x}$ of $N$ feature vectors, self-attention transforms $\bX$ into the output sequence $\bH$ in the following two steps:
+% {\bf Step 1.} The input sequence $\bX$ is projected into the query matrix $\bQ$, the key matrix $\bK$, and the value matrix $\bV$ via three linear transformations 
+% % \vspace{0.15cm}
+% \begin{align}
+% \bQ=\bX\bW_Q^\top; \bK=\bX\bW_K^\top; \bV=\bX\bW_V^\top, \label{eqn:qkv}
+% \end{align}
+% where $\bW_Q,\bW_K\in \RR^{D_{qk}\times D_x}$, and $\bW_V\in \RR^{D\times D_x}$ are the weight matrices. We denote $\mQ:=[\bq(1),\dots,\bq(N)]^\top, \bK:=[\bk(1),\dots,\bk(N)]^\top$, and $\bV:=[\bv(1),\dots,\bv(N)]^\top$, where the vectors $\bq(i),\bk(i)$, and $\bv(i)$, for $i=1,\dots,N$ are the query, key, and value vectors, respectively. 
+% {\bf Step 2.} The output sequence $\hat{\bV}:=[\bu(1),\dots,\bu(N)]^\top \in \RR^{N\times D_{qk}}$ is then computed as follows
+% \begin{equation}\label{eq:attention-mat}
+% {\hat{\bV}}={\rm softmax}\Big({\bQ}{\bK}^\top /{\sqrt{D_{qk}}}\Big){\bf V} :=\bA{\bV},
+% \end{equation}
+% where the softmax function is applied to each row of the matrix $\bQ\bK^\top/\sqrt{D_{qk}}$. The matrix $\bA:={\rm softmax}\Big(\frac{{\bQ}{\bK}^\top }{\sqrt{D_{qk}}}\Big) \in \RR^{N\times N}$ and its component $a_{ij}$ for $i,\,j=1,\cdots,N$  are called the attention matrix and attention scores, respectively. At each layer $l$-th, the output of self-attention can be seen at the input of the next layer. Therefore, for each query vector $\bq^l(i)$ for $i=1,\cdots,N$, an equivalent form of~(\ref{eq:attention-mat}) to compute the output vector $\hat{\bv}^{\ell}(i)$ of layer $\ell$-th (or the input of layer $\ell + 1$) is given by 
+The self-attention~(\ref{eq:attention-vec}) is referred to as softmax attention. Our work refers to a transformer that uses softmax attention as a softmax transformer.
+
+Despite their remarkable success, transformers exhibit practical performance issues in their robustness and representation capacity. For example, recent studies \cite{mahmood2021robustness,madry2017towards,zhou2022understanding} have provided empirical evidence of Vision Transformer's susceptibility to adversarial attacks and common input perturbations, such as noise or blur. Additionally, deep transformer-based models have been observed to suffer from rank-collapse in their outputs, wherein token embeddings become increasingly similar as the model depth increases~\cite{shi2022revisiting, dong2021attention,wang2022antioversmoothing}. This issue severely constrains the representation capacity of transformers, hindering their performance in various tasks. Addressing these issues is crucial for ensuring the reliability and effectiveness of transformer models across different applications.
+
+\vspace{-2mm}
+\subsection{Contribution}
+
+We introduce self-attention as a self-evolving state-space model (SSM) and provide insights into the non-robustness and rank-collapse issues inherent in transformers. Specifically, we demonstrate that self-attention can be seen as a discretization of an SSM from a gradient flow, minimizing the nonlocal total variation~\cite{Gilboa2008NonlocalOW} of an input signal and promoting smoothness. This characteristic leads to rank collapse and diminishes the output's representation capacity. Additionally, the steady-state solution of the SSM is sensitive to input perturbation. Motivated by this novel understanding, we propose the Proportional-Integral-Derivative (PID) control transformer, PIDformer, as a new transformer class that mitigates both issues. PIDformer is derived as a discretization of a PID-control integrated SSM proven to enhance the model's stability and representation capacity. Our contributions are four-fold.
+
+\vspace{-3mm}
+\begin{enumerate}
+    \item  We present a novel control framework for self-attention mechanisms, unveiling the connection between self-attention and the state-space model. Our analysis sheds light on the shortcomings of transformers, which exhibit non-robust behavior to input perturbations and are prone to rank collapse. 
+    \item Motivated by these analyses, we propose PIDformer, a new class of transformers, that integrates a Proportional-Integral-Derivative (PID) controller into transformers. PIDformer enhances model robustness and effectively mitigates the rank-collapse issue.
+    % \vspace{-0.14in}
+    \item We demonstrate how the connection between energy optimization and our controlled SSMs enhances the understanding of these models.
+    \item We theoretically prove that employing softmax self-attention is inherently sensitive to noise and tends to produce low-rank outputs. In contrast, our controlled SSM is guaranteed to exhibit superior robustness and avoid the rank-collapse issue.
+\end{enumerate}
+
+\vspace{-2mm}
+We empirically demonstrate the advantages of PIDformers on various large-scale applications, including the ImageNet object classification~\cite{deng2009imagenet} (under diverse input perturbations and robustness benchmarks), ADE20K image segmentation~\cite{zhou2018semantic}, and WikiText-103 language modeling~\cite{DBLP:conf/iclr/MerityX0S17}. tasks.
+
+\textbf{Organization.}
+We structure our paper as follows: In Section~\ref{sec:method}, we introduce a control framework for self-attention, offering insights into the non-robustness and rank-collapse issues in transformer-based models. In Section~\ref{sec:pid-control}, we incorporate a PID controller into the SSM, providing theoretical guarantees of its stability and ability to mitigate the rank-collapse issue. Subsequently, we developed PIDformer, a discretization of the PID-controlled SSM, and established the connection between these dynamics and energy optimization for further understanding. In Section~\ref{sec:experiment}, we empirically validate the benefits of PIDformer. We review related work in Section~\ref{sec:related_work}. Finally, we summarize our main contributions and provide additional results, details, and proofs in the Appendix.
