@@ -1,0 +1,214 @@
+%%%%%%%% ICML 2024 EXAMPLE LATEX SUBMISSION FILE %%%%%%%%%%%%%%%%%
+
+\documentclass{article}
+
+% Recommended, but optional, packages for figures and better typesetting:
+\usepackage{microtype}
+\usepackage{graphicx}
+\usepackage{subfigure}
+\usepackage{booktabs} % for professional tables
+
+% hyperref makes hyperlinks in the resulting PDF.
+% If your build breaks (sometimes temporarily if a hyperlink spans a page)
+% please comment out the following usepackage line and replace
+% \usepackage{icml2024} with \usepackage[nohyperref]{icml2024} above.
+\usepackage{hyperref}
+
+
+% Attempt to make hyperref and algorithmic work together better:
+\newcommand{\theHalgorithm}{\arabic{algorithm}}
+
+% Use the following line for the initial blind version submitted for review:
+% \usepackage{icml2024}
+
+% If accepted, instead use the following line for the camera-ready submission:
+\usepackage[accepted]{icml2024}
+
+% For theorems and such
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{mathtools}
+\usepackage{amsthm}
+
+% if you use cleveref..
+\usepackage[capitalize,noabbrev]{cleveref}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% THEOREMS
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\theoremstyle{plain}
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{proposition}[theorem]{Proposition}
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{corollary}[theorem]{Corollary}
+\theoremstyle{definition}
+\newtheorem{definition}[theorem]{Definition}
+\newtheorem{assumption}[theorem]{Assumption}
+\theoremstyle{remark}
+\newtheorem{remark}[theorem]{Remark}
+
+% Todonotes is useful during development; simply uncomment the next line
+%    and comment out the line below the next line to turn off comments
+%\usepackage[disable,textsize=tiny]{todonotes}
+\usepackage[textsize=tiny]{todonotes}
+
+
+% The \icmltitle you define below is probably too long as a header.
+% Therefore, a short form for the running title is supplied here:
+\icmltitlerunning{Zhengbi Yong}
+
+\begin{document}
+
+\twocolumn[
+\icmltitle{Control for Learning}
+
+% It is OKAY to include author information, even for blind
+% submissions: the style file will automatically remove it for you
+% unless you've provided the [accepted] option to the icml2024
+% package.
+
+% List of affiliations: The first argument should be a (short)
+% identifier you will use later to specify author affiliations
+% Academic affiliations should list Department, University, City, Region, Country
+% Industry affiliations should list Company, City, Region, Country
+
+% You can specify symbols, otherwise they are numbered in order.
+% Ideally, you should not use this facility. Affiliations will be numbered
+% in order of appearance and this is the preferred way.
+\icmlsetsymbol{equal}{*}
+
+\begin{icmlauthorlist}
+\icmlauthor{Dawei Shi}{equal,sch}
+\icmlauthor{Zhengbi Yong}{equal,sch}
+\end{icmlauthorlist}
+
+% \icmlaffiliation{yyy}{Department of XXX, University of YYY, Location, Country}
+% \icmlaffiliation{comp}{Company Name, Location, Country}
+\icmlaffiliation{sch}{School of Automation, Beijing Institute of Technology, Beijing, China}
+
+\icmlcorrespondingauthor{Dawei Shi}{daweishi@bit.edu.cn}
+\icmlcorrespondingauthor{Zhengbi Yong}{zhengbi.yong@bit.edu.cn}
+
+% You may provide any keywords that you
+% find helpful for describing your paper; these are used to populate
+% the "keywords" metadata in the PDF but will not be shown in the document
+\icmlkeywords{Machine Learning, ICML}
+
+\vskip 0.3in
+]
+
+% this must go after the closing bracket ] following \twocolumn[ ...
+
+% This command actually creates the footnote in the first column
+% listing the affiliations and the copyright notice.
+% The command takes one argument, which is text to display at the start of the footnote.
+% The \icmlEqualContribution command is standard text for equal contribution.
+% Remove it (just {}) if you do not need this facility.
+
+%\printAffiliationsAndNotice{}  % leave blank if no need to mention equal contribution
+\printAffiliationsAndNotice{\icmlEqualContribution} % otherwise use the standard text.
+
+\begin{abstract}
+TBD
+\end{abstract}
+
+\section{Introduction}
+TBD
+
+\section{Classification of Control Theory Applications in Artificial Intelligence}
+
+The integration of control theory into artificial intelligence (AI) has fostered significant advancements across various domains. This section categorizes the applications of control theory in AI into four primary areas: (1) Control Theory's Influence on Backbone Architectures, (2) Control Theory's Impact on Training and Optimization, (3) Control Theory and Reinforcement Learning, and (4) Control Theory in Downstream Tasks. Each category elucidates how control-theoretic principles enhance AI methodologies, providing theoretical foundations, improving robustness, and enabling more efficient algorithms.
+
+\subsection{Control Theory's Influence on Backbone Architectures}
+
+The backbone architecture of deep neural networks is pivotal in determining their capacity, generalization, and robustness. Control theory contributes to backbone design by introducing concepts such as feedback mechanisms, state-space representations, and stability criteria, resulting in architectures that are more interpretable and theoretically grounded.
+
+\textbf{Relevant Literature:}
+\begin{itemize}
+    \item Deep Residual Learning for Image Recognition
+    \item State-Space Modeling in Long Sequence Processing: A Survey on Recurrence in the Transformer Era
+    \item Transformers are SSMs: Generalized Models and Efficient Algorithms Through Structured State Space Duality
+    \item Hamba: Single-view 3D Hand Reconstruction with Graph-guided Bi-Scanning Mamba
+    \item Mamba: Linear-Time Sequence Modeling with Selective State Spaces
+    \item PIDformer: Transformer Meets Control Theory
+\end{itemize}
+
+\textbf{Review:}
+
+Control theory has significantly influenced the design of backbone architectures in AI models. Residual Networks (ResNets) \cite{heDeepResidualLearning2015} introduce residual connections that function as negative feedback loops, akin to closed-loop control systems. This design mitigates the vanishing and exploding gradient problems, enabling the training of deeper networks by stabilizing the forward signal flow.
+
+State-space models (SSMs) have been integrated into sequence modeling tasks as an alternative to traditional recurrent neural networks and Transformers. The Mamba framework \cite{guMambaLineartimeSequence} leverages multiple state-space models to represent nonlinear, time-varying systems as linear time-invariant (LTI) systems, facilitating efficient long-sequence processing. This approach draws parallels to classical control systems, where state-space representations provide comprehensive insights into system dynamics.
+
+Transformers are reinterpreted as state-space models in \cite{daoTransformersAreSSMs2024}, establishing a theoretical connection between attention mechanisms and SSMs. This duality enables the design of architectures like PIDformer \cite{nguyenPIDformerTransformerMeets2024}, which incorporate Proportional-Integral-Derivative (PID) controllers directly into Transformer architectures. PIDformer enhances model robustness and stability by introducing explicit feedback control loops, addressing inherent issues related to attention mechanisms.
+
+Additionally, architectures such as Hamba \cite{dongHambaSingleview3D2024} utilize graph-guided bi-scanning state-space models for tasks like 3D hand reconstruction, demonstrating the versatility of control-theoretic designs in handling complex, multi-dimensional data.
+
+\textbf{Summary:}
+
+Control theory enriches backbone architectures by embedding feedback mechanisms and state-space representations, leading to models that are more stable, interpretable, and capable of handling complex dependencies. These advancements enable deeper networks and more efficient sequence processing, broadening the applicability of AI models in various domains.
+
+\subsection{Control Theory's Impact on Training and Optimization}
+
+Optimization and training are fundamental processes in deep learning, traditionally relying on heuristic methods such as stochastic gradient descent (SGD) and its variants. Control theory introduces systematic approaches for optimizing training algorithms, enhancing convergence rates, stability, and overall performance.
+
+\textbf{Relevant Literature:}
+\begin{itemize}
+    \item Accelerated Optimization in Deep Learning with a Proportional-Integral-Derivative Controller
+    \item PDE Models for Deep Neural Networks: Learning Theory, Calculus of Variations and Optimal Control
+    \item An Optimal Control Approach to Deep Learning and Applications to Discrete-Weight Neural Networks
+    \item Maximum Principle Based Algorithms for Deep Learning
+    \item Stochastic Modified Equations and Adaptive Stochastic Gradient Algorithms
+    \item Unifying Back-Propagation and Forward-Forward Algorithms Through Model Predictive Control
+\end{itemize}
+
+\textbf{Review:}
+
+Control theory provides a robust framework for designing and analyzing optimization algorithms in deep learning. By modeling the training process as a control system, researchers can apply principles from optimal control and feedback mechanisms to develop more efficient and stable training methods.
+
+One notable approach is the integration of Proportional-Integral-Derivative (PID) controllers into optimization algorithms \cite{chenAcceleratedOptimizationDeep2024}. The PIDAO optimizer utilizes the feedback mechanism of PID controllers to dynamically adjust learning rates and momentum terms, accelerating convergence and enhancing model accuracy.
+
+Partial differential equation (PDE) models for deep neural networks \cite{markowichPDEModelsDeep2024} reformulate the learning task as an optimization problem constrained by PDEs. This perspective leverages variational analysis and optimal control theory to provide a new mathematical foundation for understanding and improving deep learning models.
+
+Framing deep learning as a discrete-time optimal control problem \cite{liOptimalControlApproach2018} allows the application of Pontryagin’s Maximum Principle (PMP) to design training algorithms that navigate complex loss landscapes, avoiding local minima and saddle points commonly encountered by gradient-based methods.
+
+The Stochastic Modified Equations (SME) approach \cite{liStochasticModifiedEquations2017} approximates stochastic gradient descent dynamics as continuous-time stochastic differential equations. This approximation facilitates the use of optimal control techniques to derive adaptive hyperparameter adjustment strategies, improving the robustness and efficiency of training algorithms.
+
+Moreover, Model Predictive Control (MPC) has been employed to unify traditional back-propagation and forward-forward training algorithms \cite{renUnifyingBackpropagationForwardforward2024}. By treating parameter updates as optimization tasks over a prediction horizon, MPC-based training methods offer a structured approach to parameter trajectory planning, enhancing training stability and performance.
+
+\textbf{Summary:}
+
+Control theory transforms the training and optimization landscape in deep learning by introducing systematic, theoretically grounded methods. These advancements lead to more efficient optimizers, enhanced convergence properties, and reduced sensitivity to hyperparameter settings, thereby improving overall model performance and reliability.
+
+\subsection{Control Theory and Reinforcement Learning}
+
+Reinforcement Learning (RL) focuses on learning optimal policies through interactions with an environment, a process inherently related to control theory's objectives of system regulation and optimization. Integrating control-theoretic principles into RL enhances the theoretical foundations and practical performance of RL algorithms.
+
+\textbf{Relevant Literature:}
+\begin{itemize}
+    \item A General Control-Theoretic Approach for Reinforcement Learning: Theory and Algorithms
+    \item Real-Time Progressive Learning: Accumulate Knowledge from Control with Neural-Network-Based Selective Memory
+    \item Interpolation, Approximation and Controllability of Deep Neural Networks
+    \item On Recurrent Neural Networks for Learning-Based Control: Recent Results and Ideas for Future Developments
+\end{itemize}
+
+\textbf{Review:}
+
+Control theory provides essential tools for analyzing and designing RL algorithms, particularly in ensuring convergence, stability, and optimality of learned policies. By framing RL problems within a control-theoretic context, researchers can apply methodologies such as optimal control, Lyapunov stability analysis, and controllability assessments to enhance RL performance.
+
+A general control-theoretic approach to RL \cite{chenGeneralControltheoreticApproach2024} integrates optimal control principles with RL algorithms, establishing convergence and optimality guarantees for policy learning. This framework leverages control-theoretic operators to guide policy updates, ensuring that learned policies are both optimal and stable.
+
+Real-Time Progressive Learning (RTPL) \cite{feiRealtimeProgressiveLearning2023} utilizes neural networks with selective memory-based control schemes to continuously accumulate knowledge from interactions with the environment. This approach enhances learning efficiency and stability by incorporating feedback mechanisms that adaptively refine the policy based on real-time performance metrics.
+
+Investigations into the controllability and observability of deep neural networks \cite{chengInterpolationApproximationControllability2023} provide insights into the representational power and generalization capabilities of RL policies. Understanding these properties helps in designing RL algorithms that are more robust to environmental disturbances and capable of generalizing across diverse tasks.
+
+Additionally, recurrent neural networks (RNNs) are explored within RL frameworks to handle temporal dependencies and dynamic environments \cite{bonassiRecurrentNeuralNetworks2022}. By incorporating Input-to-State Stability (ISS) and $\delta$ISS guarantees, these models ensure robust policy learning and execution, even in the presence of noisy or incomplete observations.
+
+\textbf{Summary:}
+
+The fusion of control theory and reinforcement learning enriches RL methodologies with robust theoretical guarantees and enhanced algorithmic designs. This integration leads to more stable, efficient, and optimal policy learning, making RL approaches more suitable for complex, real-world applications such as autonomous driving and robotic manipulation.
+
+
+\bibliography{cfl}
+\bibliographystyle{icml2024}
+
+\end{document}
